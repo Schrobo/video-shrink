@@ -1,0 +1,71 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  desktop:
+    name: ${{ matrix.platform }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: macos
+            runner: macos-15
+            artifact: macos-arm64
+          - platform: windows
+            runner: windows-2022
+            artifact: windows-x64
+          - platform: linux
+            runner: ubuntu-24.04
+            artifact: linux-x64
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2
+        with:
+          flutter-version: '3.44.7'
+          channel: stable
+          cache: true
+      - name: Linux build dependencies
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev ffmpeg
+      - run: flutter --suppress-analytics pub get --enforce-lockfile
+      - run: flutter --suppress-analytics analyze --no-pub
+      - run: flutter --suppress-analytics test --no-pub
+      - run: flutter --suppress-analytics build ${{ matrix.platform }} --release --no-pub
+      - name: Package macOS development app
+        if: runner.os == 'macOS'
+        run: |
+          mkdir -p dist
+          ditto -c -k --sequesterRsrc --keepParent 'build/macos/Build/Products/Release/Video Shrink.app' dist/video-shrink-macos-arm64.zip
+      - name: Package Windows development app
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Path dist
+          Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath dist/video-shrink-windows-x64.zip
+      - name: Package Linux development app
+        if: runner.os == 'Linux'
+        run: |
+          mkdir -p dist
+          tar -C build/linux/x64/release -czf dist/video-shrink-linux-x64.tar.gz bundle
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: video-shrink-${{ matrix.artifact }}-development
+          path: dist/*
+          retention-days: 3
+          if-no-files-found: error

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="220" viewBox="0 0 1280 220" role="img" aria-labelledby="title description">
+  <title id="title">Video Shrink</title>
+  <desc id="description">Drop a video. Get a smaller MP4. For macOS, Windows and Linux.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfaff"/><stop offset="1" stop-color="#f0e9ff"/></linearGradient>
+    <linearGradient id="file" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8938ff"/><stop offset="1" stop-color="#7516f8"/></linearGradient>
+  </defs>
+  <rect width="1280" height="220" rx="20" fill="url(#bg)"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="60" y="93" font-size="46" font-weight="700" fill="#1c1425" letter-spacing="-1.8">Video Shrink</text>
+    <text x="61" y="132" font-size="20" fill="#61596b">Drop a video. Get a smaller MP4.</text>
+    <text x="62" y="178" font-size="12" fill="#746982" letter-spacing="1.5">LOCAL  ·  macOS / WINDOWS / LINUX</text>
+  </g>
+  <g fill="none" stroke="#d8c9f3" stroke-width="1"><circle cx="1090" cy="110" r="132"/><circle cx="1090" cy="110" r="103"/></g>
+  <g transform="translate(878 43) rotate(-7 48 68)">
+    <rect width="96" height="134" rx="14" fill="white" stroke="#e6ddf5"/>
+    <path d="M34 47 L68 66 L34 85Z" fill="#baa3dc"/>
+    <rect x="27" y="109" width="42" height="4" rx="2" fill="#e4dbef"/>
+  </g>
+  <path d="M998 111h38m-10-10 10 10-10 10" fill="none" stroke="#9b79cb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(1067 67) rotate(6 33 43)">
+    <rect width="66" height="87" rx="12" fill="url(#file)"/>
+    <path d="M24 27 L46 40 L24 53Z" fill="white"/>
+    <rect x="20" y="69" width="26" height="3" rx="1.5" fill="white" opacity=".55"/>
+  </g>
+</svg>

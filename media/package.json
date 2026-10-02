@@ -1,0 +1,15 @@
+{
+  "name": "video-shrink-demo",
+  "private": true,
+  "scripts": {
+    "render": "remotion render index.tsx Demo ../docs/demo.gif --codec=gif --every-nth-frame=2 --concurrency=2",
+    "still": "remotion still index.tsx Demo ../docs/demo.png --frame=160",
+    "cover": "node -e \"require('fs').mkdirSync('public',{recursive:true});require('fs').copyFileSync('../docs/cover.svg','public/cover.svg')\" && remotion still index.tsx Cover ../docs/cover.png"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.513",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.513"
+  }
+}

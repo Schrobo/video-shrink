@@ -1,0 +1,26 @@
+name: video_shrink
+description: "Lokale Videokomprimierung für den WhatsApp-Versand."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  desktop_drop: 0.4.4
+  file_selector_platform_interface: ^2.6.2
+  file_selector_macos: ^0.9.4+2
+  file_selector_windows: ^0.9.3+4
+  file_selector_linux: ^0.9.3+2
+  web: ^1.1.1
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

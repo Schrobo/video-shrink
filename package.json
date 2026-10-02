@@ -1,0 +1,9 @@
+{
+  "name": "video-shrink",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "verify": "node scripts/verify.mjs"
+  }
+}
